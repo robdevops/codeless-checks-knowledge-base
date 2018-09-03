@@ -29,10 +29,12 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 ```
 /usr/lib64/nagios/plugins/check_tcp -H localhost -p 4949 -e '# munin node at '
 ```
+
 # Qpidd
 ```
 /usr/lib64/nagios/plugins/check_tcp -H localhost -p 5672 -s 'icinga:icinga' -e AMQP
 ```
+
 # Other tips
 * Use `check_smtp` for amavis. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-smtp* on RHEL.
 * Use `check_http` for nodejs, and java application servers. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-http* on RHEL.
