@@ -33,6 +33,12 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 ```
 /usr/lib64/nagios/plugins/check_tcp -H localhost -p 5672 -s 'icinga:icinga' -e AMQP
 ```
+# Other tips
+* Use `check_smtp` for amavis.
+* Use `check_http` for nodejs, and java application servers
+* When implementing check_tcp, be familiar with the `-s` and `-e` switches. Your test is much more robust if it tests for the expected behaviour, not just a listening socket.
+* When implementing check_http, use `-s` to search for expected content on the page.
+  * Also use `-v -f follow` to discover the direct URI. Then in production, pass the URI to the -u switch (e.g. `-u '/dashboard/Login.php'`).
 
 # References
 https://www.netkiller.cn/monitoring/nagios/plugins.html
