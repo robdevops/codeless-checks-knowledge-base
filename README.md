@@ -3,7 +3,7 @@ How to get Nagios / Icinga to communicate with various daemons without additiona
 
 In some cases, check_tcp is used. This is found in the monitoring-plugins-basic package (debian) or nagios-plugins-tcp package (Red Hat).
 
-In other cases, we can run a service monitor directly, as long as it returns appropriate exit status on success and failure. Where it doesn't, a wrapper is needed, in which case it is beyond scope of this article.
+In other cases, we can run a third-party binary directly, as long as it returns appropriate exit status on success and failure. Where it doesn't, a wrapper is needed, in which case it is beyond scope of this article.
 
 # Redis
 ```
