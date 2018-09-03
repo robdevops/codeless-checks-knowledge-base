@@ -5,14 +5,9 @@ In many cases, these commands use `check_tcp` from the *monitoring-plugins-basic
 
 In other cases, we can run a third-party binary directly, as long as it returns appropriate exit status on success and failure. Where it doesn't, a wrapper is needed, and is therefore beyond the scope of this article.
 
-# Redis
+# Asterisk
 ```
-/usr/lib64/nagios/plugins/check_tcp -H HOST -p 6379 -E -s 'PING\n' -e PONG
-```
-
-# Memcached
-```
-/usr/lib64/nagios/plugins/check_tcp -H HOST -p 11211 -E -s 'stats\n' -e 'STAT uptime'
+/usr/bin/sudo /usr/sbin/asterisk -r -s /var/run/asterisk/asterisk.ctl -x "core show uptime"
 ```
 
 # InfluxDB
@@ -20,9 +15,9 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 /usr/bin/influx --execute "show measurements" -database XXX -HOST XXX -username XXX -password XXX
 ```
 
-# Asterisk
+# Memcached
 ```
-/usr/bin/sudo /usr/sbin/asterisk -r -s /var/run/asterisk/asterisk.ctl -x "core show uptime"
+/usr/lib64/nagios/plugins/check_tcp -H HOST -p 11211 -E -s 'stats\n' -e 'STAT uptime'
 ```
 
 # Munin-node
@@ -33,6 +28,11 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 # Qpidd
 ```
 /usr/lib64/nagios/plugins/check_tcp -H localhost -p 5672 -s 'icinga:icinga' -e AMQP
+```
+
+# Redis
+```
+/usr/lib64/nagios/plugins/check_tcp -H HOST -p 6379 -E -s 'PING\n' -e PONG
 ```
 
 # Other tips
