@@ -37,7 +37,7 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 * Use `check_smtp` for amavis. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-smtp* on RHEL.
 * Use `check_http` for nodejs, and java application servers. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-http* on RHEL.
 * When implementing `check_tcp`, be familiar with the `-s` and `-e` switches. Your test is much more robust if it tests for the expected behaviour, not just a listening socket.
-  * Also be aware this test can connect to UNIX sockets.
+  * Also keep in mind this test can connect to UNIX sockets when run on the remote agent.
 * When implementing check_http, use `-s` to search for expected content on the page.
   * Also use `-v -f follow` to discover the direct URI. Then in production, pass the URI to the -u switch (e.g. `-u '/dashboard/Login.php'`).
 
