@@ -1,4 +1,4 @@
-# codeless-checks-knowledge-base
+# Codeless-checks-knowledge-base
 How to get Nagios / Icinga to communicate with various daemons without additional code. 
 
 In many cases, check_tcp is used. This is found in the *monitoring-plugins-basic* package (Debian) or *nagios-plugins-tcp* package (RHEL).
