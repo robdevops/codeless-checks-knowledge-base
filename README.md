@@ -10,6 +10,12 @@ In other cases, we can run a third-party binary directly, as long as it returns 
 /usr/bin/sudo /usr/sbin/asterisk -r -s /var/run/asterisk/asterisk.ctl -x "core show uptime"
 ```
 
+# DHCPD
+Okay, this one isn't super creative, but it may not be obvious that dhcpd has this built-in, since you must define *both* `-i lo` and `-s 127.0.0.1`. Beats putting a junk entry into dhcpd.conf.
+```
+/usr/bin/sudo /usr/lib64/nagios/plugins/check_dhcp -t 1 -i lo -u -s 127.0.0.1 -r 0.0.0.0
+```
+
 # InfluxDB
 ```
 /usr/bin/influx --execute "show measurements" -database XXX -HOST XXX -username XXX -password XXX
