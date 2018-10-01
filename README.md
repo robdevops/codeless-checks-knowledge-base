@@ -3,7 +3,7 @@ How to get Nagios / Icinga to communicate with various daemons without additiona
 
 In many cases, these commands use `check_tcp` from the *monitoring-plugins-basic* package (Debian), or the *nagios-plugins-tcp* package (RHEL).
 
-In other cases, we can run a third-party binary directly, as long as it returns appropriate exit status on success and failure. Where it doesn't, a wrapper is needed, and is therefore beyond the scope of this article.
+In other cases, we can run the built-in management tools of the target service directly, as long as it returns appropriate exit status on success and failure. Where it doesn't, a wrapper is needed, and is therefore beyond the scope of this article.
 
 # Asterisk
 ```
