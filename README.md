@@ -57,7 +57,7 @@ Putting that into the check_mysql_query, we use `-w 1:1` to alert if the result 
 * When implementing `check_tcp`, be familiar with the `-s` and `-e` switches. Your test is much more robust if it tests for the expected behaviour, not just a listening socket.
   * Also keep in mind this test can connect to UNIX sockets when run on the remote agent.
 * When implementing `check_http`, use `-s` to search for expected content on the page.
-  * Also use `-v` `-f follow` to discover the direct URI. Then in production, pass the URI to the `-u` switch (e.g. `-u '/dashboard/Login.php'`) to increase efficiency.
+  * Also use `-v` `-f follow` to discover the final URI after all redirects. In production, pass this final URI to the `-u` switch (e.g. `-u '/dashboard/Login.php'`) to increase efficiency.
 
 # References
 https://www.netkiller.cn/monitoring/nagios/plugins.html
