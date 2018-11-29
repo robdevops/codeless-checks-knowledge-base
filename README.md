@@ -23,7 +23,7 @@ Okay, this one isn't super creative, but it may not be obvious that dhcpd has th
 
 # Memcached
 ```
-/usr/lib64/nagios/plugins/check_tcp -H HOST -p 11211 -E -s 'stats\n' -e 'STAT uptime'
+/usr/lib64/nagios/plugins/check_tcp -H HOST -p 11211 -E -s 'version\n' -e 'VERSION'
 ```
 
 # Munin-node
