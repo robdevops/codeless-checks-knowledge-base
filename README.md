@@ -16,6 +16,14 @@ Okay, this one isn't super creative, but it may not be obvious that dhcpd has th
 /usr/bin/sudo /usr/lib64/nagios/plugins/check_dhcp -t 1 -i lo -u -s 127.0.0.1 -r 0.0.0.0
 ```
 
+# FreeRADIUS
+1. Install the *freeradius-utils* package.
+1. Create the test payload: `echo 'Message-Authenticator = 0x00' > /usr/local/etc/radclient.status.txt`
+1. Run the test:
+```
+/usr/bin/radclient localhost:18121 status adminsecret -f /usr/local/etc/radclient.status.txt
+```
+
 # InfluxDB
 ```
 /usr/bin/influx --execute "show measurements" -database XXX -HOST XXX -username XXX -password XXX
@@ -51,13 +59,6 @@ Putting that into the check_mysql_query, we use `-w 1:1` to alert if the result 
 /usr/lib64/nagios/plugins/check_tcp -H HOST -p 6379 -E -s 'PING\n' -e PONG
 ```
 
-# FreeRADIUS
-1. Install the *freeradius-utils* package.
-1. Create the test payload: `echo 'Message-Authenticator = 0x00' > /usr/local/etc/radclient.status.txt`
-1. Run the test:
-```
-/usr/bin/radclient localhost:18121 status adminsecret -f /usr/local/etc/radclient.status.txt
-```
 
 # Other tips
 * Use `check_smtp` for amavis. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-smtp* on RHEL.
