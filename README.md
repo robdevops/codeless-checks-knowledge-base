@@ -51,6 +51,14 @@ Putting that into the check_mysql_query, we use `-w 1:1` to alert if the result 
 /usr/lib64/nagios/plugins/check_tcp -H HOST -p 6379 -E -s 'PING\n' -e PONG
 ```
 
+# FreeRADIUS
+1. Install the *freeradius-utils* package.
+1. Create the test payload: `echo 'Message-Authenticator = 0x00' > /usr/local/etc/radclient.status.txt`
+1. Run the test:
+```
+/usr/bin/radclient localhost:18121 status adminsecret -f /usr/local/etc/radclient.status.txt
+```
+
 # Other tips
 * Use `check_smtp` for amavis. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-smtp* on RHEL.
 * Use `check_http` for nodejs, and java application servers. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-http* on RHEL.
