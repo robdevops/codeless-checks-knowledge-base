@@ -11,7 +11,7 @@ In other cases, we can run the built-in management tools of the target service d
 ```
 
 # DHCPD
-Okay, this one isn't super creative, but it may not be obvious that dhcpd has this built-in, since you must define both `-i lo` and `-s 127.0.0.1`. Sure beats junk entries into dhcpd.conf.
+Okay, this one isn't super creative, but it may not be obvious that dhcpd has this built-in, since you must define both `-i lo` and `-s 127.0.0.1` to get a response. Anyway, it sure beats junk entries into dhcpd.conf.
 ```
 /usr/bin/sudo /usr/lib64/nagios/plugins/check_dhcp -t 1 -i lo -u -s 127.0.0.1 -r 0.0.0.0
 ```
