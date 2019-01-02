@@ -44,7 +44,7 @@ The packaged `check_mysql_query` is not designed to query for a string. It requi
 ```
 SELECT IF (variable_value='Synced',1,0) FROM information_schema.global_status WHERE variable_name='wsrep_local_state_comment';
 ```
-Putting that into the `check_mysql_query`, we use `-w 1:1` to alert if the result is not 1. Also note the single quotes require escaping:
+Putting that into the `check_mysql_query`, we use `-w 1:1` to alert if the result is not "1". Also note the single quotes require escaping:
 ```
 /usr/lib64/nagios/plugins/check_mysql_query -H localhost -d portal -u icinga -p password -q "SELECT IF (variable_value=\'Synced\',1,0) FROM information_schema.global_status WHERE variable_name=\'wsrep_local_state_comment\' -w 1:1 
 ```
