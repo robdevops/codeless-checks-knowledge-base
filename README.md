@@ -40,13 +40,29 @@ Okay, this one isn't super creative, but it may not be obvious that dhcpd has th
 ```
 
 # MySQL / MariaDB
-The packaged `check_mysql_query` is not designed to query for a string. It requires numerical output from the query. However, given that Nagios tests are in essence a "pass" or "fail", we can use an SQL `IF` statement to substitute the presence or absence of any value with a number. In this case, if `variable_value='Synced'`, we return `1`, else we return `0`:
+The packaged `check_mysql_query` is not designed to query for a string. It requires numerical output from the query. This is not useful if we want to check a string, like:
 ```
-SELECT IF (variable_value='Synced',1,0) FROM information_schema.global_status WHERE variable_name='wsrep_local_state_comment';
+SELECT variable_value FROM information_schema.global_status where variable_name='wsrep_ready';
++----------------+
+| variable_value |
++----------------+
+| ON             |
++----------------+
+```
+(the above, by the way, is long-hand for `SHOW STATUS LIKE 'wsrep_ready'`
+
+However, given that Nagios tests are in essence a "pass" or "fail", we can use an SQL `IF` statement to substitute the presence or absence of any value with a number. In this case, if `variable_value='ON'`, we return `1`, else we return `0`:
+```
+SELECT IF (variable_value='ON',1,0) FROM information_schema.global_status WHERE variable_name='wsrep_ready';
 ```
 Putting that into the `check_mysql_query`, we use `-w 1:1` to alert if the result is not "1". Also note the single quotes require escaping:
 ```
-/usr/lib64/nagios/plugins/check_mysql_query -H localhost -d portal -u icinga -p password -q "SELECT IF (variable_value=\'Synced\',1,0) FROM information_schema.global_status WHERE variable_name=\'wsrep_local_state_comment\' -w 1:1 
+/usr/lib64/nagios/plugins/check_mysql_query -H localhost -d portal -u icinga -p password -q "SELECT IF (variable_value=\'ON\',1,0) FROM information_schema.global_status WHERE variable_name=\'wsrep_ready\' -w 1:1 
+```
+
+Another example. You can use TIMESTAMPDIFF to turn a timestamp into a threshold:
+```
+check_mysql_query -q "SELECT TIMESTAMPDIFF(DAY, from_unixtime(value), now()) FROM mytable WHERE field = 'timestamp'" -w 10 -c 20
 ```
 
 # Qpidd
