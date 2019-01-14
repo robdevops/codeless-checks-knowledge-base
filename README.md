@@ -64,6 +64,11 @@ Another example. You can use TIMESTAMPDIFF to turn a timestamp into a threshold:
 ```
 check_mysql_query -q "SELECT TIMESTAMPDIFF(DAY, from_unixtime(value), now()) FROM mytable WHERE field = 'timestamp'" -w 10 -c 20
 ```
+Or similarly with UNIX_TIMESTAMP:
+```
+check_mysql_query -q "SELECT SELECT(UNIX_TIMESTAMP() - value)/86400 FROM mytable WHERE field = 'timestamp'" -w 10 -c 20
+
+```
 
 # Qpidd
 ```
