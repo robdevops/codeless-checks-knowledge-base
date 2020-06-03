@@ -34,6 +34,11 @@ Okay, this one isn't super creative, but it may not be obvious that dhcpd has th
 /usr/lib64/nagios/plugins/check_tcp -H HOST -p 11211 -E -s 'version\n' -e 'VERSION'
 ```
 
+# Mosquitto (MQTT service)
+```
+mosquitto_sub -C 1 -t '$SYS/broker/clients/connected'}}
+```
+
 # Munin-node
 ```
 /usr/lib64/nagios/plugins/check_tcp -H localhost -p 4949 -e '# munin node at '
