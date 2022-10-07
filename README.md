@@ -95,6 +95,5 @@ check_mysql_query -q "SELECT SELECT(UNIX_TIMESTAMP() - value)/86400 FROM mytable
   * Also use `-v` `-f follow` to discover the final URI after all redirects. In production, pass this final URI to the `-u` switch (e.g. `-u '/dashboard/Login.php'`) to increase efficiency.
 
 # References
-https://www.netkiller.cn/monitoring/nagios/plugins.html
-https://influxdbcom.readthedocs.io/en/latest/content/docs/v0.9/query_language/schema_exploration/
-https://www.influxdata.com/blog/how-to-use-the-show-stats-command-and-the-_internal-database-to-monitor-influxdb/
+* https://docs.influxdata.com/influxdb/v1.8/query_language/explore-schema/
+* https://www.influxdata.com/blog/how-to-use-the-show-stats-command-and-the-_internal-database-to-monitor-influxdb/
