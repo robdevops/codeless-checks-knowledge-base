@@ -90,7 +90,7 @@ check_mysql_query -q "SELECT SELECT(UNIX_TIMESTAMP() - value)/86400 FROM mytable
 * Use `check_smtp` for amavis. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-smtp* on RHEL.
 * Use `check_http` for nodejs, and java application servers. The package is *monitoring-plugins-basic* on Debian and *nagios-plugins-http* on RHEL.
 * When implementing `check_tcp`, be familiar with the `-s` and `-e` switches. Your test is much more robust if it tests for the expected behaviour, not just a listening socket.
-  * Also keep in mind this test can connect to UNIX sockets when run on the remote agent.
+  * Also keep in mind this test can connect to UNIX socket files when run on the remote agent.
 * When implementing `check_http`, use `-s` to search for expected content on the page.
   * Also use `-v` `-f follow` to discover the final URI after all redirects. In production, pass this final URI to the `-u` switch (e.g. `-u '/dashboard/Login.php'`) to increase efficiency.
 
